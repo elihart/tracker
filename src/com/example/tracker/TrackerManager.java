@@ -1,6 +1,7 @@
 package com.example.tracker;
 
 import android.content.Context;
+import android.database.Cursor;
 
 import com.example.tracker.data.DbHelper;
 import com.example.tracker.data.TrackerDatabase;
@@ -23,6 +24,10 @@ public class TrackerManager {
 
 	public void setCurrentEntry(LogEntry entry) {
 		mCurrentEntry = entry;		
+	}
+
+	public Cursor getLogs() {
+		return mDbHelper.getLogs();
 	}
 
 }

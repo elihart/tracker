@@ -28,5 +28,13 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(this, NewEntryActivity.class);
 		this.startActivity(intent);
 	}
+	
+	/*
+	 * Launch the ViewLogActivity
+	 */
+	public void viewLog(View v){
+		Intent intent = new Intent(this, ViewLogActivity.class);
+		this.startActivity(intent);
+	}
 
 }

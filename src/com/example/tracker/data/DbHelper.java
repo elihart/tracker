@@ -4,6 +4,7 @@ import com.example.tracker.LogEntry;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 public class DbHelper {
@@ -30,6 +31,15 @@ public class DbHelper {
 		
 		// insert pictures associated with this entry
 		
+	}
+
+	/*
+	 * Return a cursor containing all rows in the Entries table, sorted by newest
+	 * to oldest
+	 */
+	public Cursor getLogs() {
+		String[] columns = new String[] {"date", "_id"};
+		return mDb.query(TrackerDatabase.TABLE_ENTRIES, columns, null, null, null, null, "date DESC");
 	}
 
 }

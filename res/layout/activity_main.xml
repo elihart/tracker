@@ -34,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/newEntry"
         android:layout_below="@+id/newEntry"
+        android:onClick="viewLog"
         android:text="Your Log" />
 
     <Button
