@@ -42,4 +42,11 @@ public class DbHelper {
 		return mDb.query(TrackerDatabase.TABLE_ENTRIES, columns, null, null, null, null, "date DESC");
 	}
 
+	public LogEntry getEntryFromId(int id) {
+		String selection = "_id = '" + id + "'";
+		Cursor c = mDb.query(TrackerDatabase.TABLE_ENTRIES, null, selection, null, null, null, "date DESC");
+		
+		return new LogEntry(c);
+	}
+
 }

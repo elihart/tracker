@@ -2,6 +2,8 @@ package com.example.tracker;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.view.Menu;
 import android.view.View;
@@ -11,31 +13,42 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 public class ViewLogActivity extends Activity {
-	
+	private Context mContext;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_log);
 		
-		ListView list = (ListView) findViewById(R.id.logList);
+		// set up manager
 		TrackerApplication app = (TrackerApplication)getApplication();
-		TrackerManager manager = app.getManager();
+		final TrackerManager manager = app.getManager();
+		
+		mContext = this;
+		
+		ListView list = (ListView) findViewById(R.id.logList);
+		
 		
 		// set Cursor with database results
 		Cursor c = manager.getLogs();
 		System.out.println(c.toString());
 		
-		SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.log_list_entry, c, new String[]{"date"}, new int[]{R.id.date}, 0);
+		LogCursorAdapter adapter = new LogCursorAdapter(this, c, false);
 		
 		list.setAdapter(adapter);
 		
 		list.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+			public void onItemClick(AdapterView<?> arg0, View view, int arg2,
 					long arg3) {
-				// TODO Auto-generated method stub
+				// create a LogEntry object based on this database entry
+				int entryId = (Integer) view.getTag();
+				LogEntry entry = manager.getEntryFromId(entryId);
+				manager.setEntryForViewing(entry);
+				
+				Intent intent = new Intent(mContext, ViewEntryActivity.class);
+				mContext.startActivity(intent);
 				
 			}
 		});

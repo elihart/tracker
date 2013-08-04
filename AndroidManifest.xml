@@ -31,6 +31,10 @@
             android:name="com.example.tracker.ViewLogActivity"
             android:label="@string/title_activity_view_log" >
         </activity>
+        <activity
+            android:name="com.example.tracker.ViewEntryActivity"
+            android:label="@string/title_activity_view_entry" >
+        </activity>
     </application>
 
 </manifest>
