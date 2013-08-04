@@ -11,7 +11,7 @@ public class TrackerDatabase extends SQLiteOpenHelper {
     private static final String DB_NAME = "tracker_data";
     
     // Create log entry database
-    private static final String TABLE_ENTRIES = "entries";
+    public static final String TABLE_ENTRIES = "entries";
     private static final String ENTRIES_ID = "_id";
     private static final String COL_DATE = "date";
     private static final String COL_NOTE = "note";

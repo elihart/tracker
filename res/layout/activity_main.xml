@@ -8,6 +8,16 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:textSize="20sp"
+        android:text="Acne Tracker" />
+    
     <Button
         android:id="@+id/newEntry"
         android:layout_width="wrap_content"
@@ -15,6 +25,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="97dp"
+        android:onClick="newEntry"
         android:text="New Entry" />
 
     <Button
@@ -32,5 +43,7 @@
         android:layout_alignLeft="@+id/log"
         android:layout_below="@+id/log"
         android:text="View Trends" />
+
+    
 
 </RelativeLayout>

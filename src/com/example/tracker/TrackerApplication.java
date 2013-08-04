@@ -11,4 +11,8 @@ public class TrackerApplication extends Application {
 		// init manager
 		mManager = new TrackerManager(this.getApplicationContext());
 	}
+	
+	public TrackerManager getManager() {
+		return mManager;
+	}
 }
