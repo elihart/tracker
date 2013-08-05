@@ -3,6 +3,8 @@ package com.example.tracker;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.example.tracker.data.DbHelper;
+
 import android.database.Cursor;
 import android.net.Uri;
 
@@ -26,7 +28,7 @@ public class LogEntry {
 	/*
 	 * Create a LogEntry from a cursor that contains one row from the Entries table
 	 */
-	public LogEntry(Cursor cursor) {
+	public LogEntry(Cursor cursor, DbHelper db) {
 		if(!cursor.moveToFirst()) {
 			System.out.println("Error creating LogEntry. Cursor is empty");
 		}
@@ -43,6 +45,10 @@ public class LogEntry {
 		
 		// search metric tables for metrics for this entry id
 		mMetrics = new ArrayList<TrackingMetric>();
+		AcneMetric acne = AcneMetric.loadFromDb(db, mId);
+		if(acne != null){
+			mMetrics.add(acne);
+		}
 		
 		// search image table for pictures for this entry id
 		mImagePaths = new ArrayList<Uri>();

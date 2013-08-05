@@ -53,6 +53,17 @@ public class DbHelper {
 		String selection = "_id = '" + id + "'";
 		Cursor c = mDb.query(TrackerDatabase.TABLE_ENTRIES, null, selection, null, null, null, "date DESC");
 		
-		return new LogEntry(c);
-	}	
+		return new LogEntry(c, this);
+	}
+	
+	/**
+	 * Return a cursor with the results of a query
+	 * @param table Which table to search
+	 * @param where A where clause to use. Null for all rows
+	 * @param columns Which columns to include. Null for all columns
+	 * @return
+	 */
+	public Cursor doQuery(String table, String where, String[] columns){
+		return mDb.query(table, columns, where, null, null, null, null);
+	}
 }

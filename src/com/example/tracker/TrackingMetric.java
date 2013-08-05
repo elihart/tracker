@@ -21,6 +21,8 @@ public interface TrackingMetric {
 	 * @return A View that can be added to a layout
 	 */
 	public View getReadView(Context context);
+	
+	
 
 	
 }

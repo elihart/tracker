@@ -1,9 +1,13 @@
 package com.example.tracker;
 
+import java.util.Date;
+
+import com.example.tracker.data.DbHelper;
 import com.example.tracker.data.TrackerDatabase;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -47,7 +51,7 @@ public class AcneMetric implements TrackingMetric {
 
 		// load the number of pimples
 		TextView text = (TextView) view.findViewById(R.id.number);
-		text.setText(mNumber);
+		text.setText(mNumber + "");
 
 		return view;
 	}
@@ -65,6 +69,25 @@ public class AcneMetric implements TrackingMetric {
 		}
 
 	}
+	
+	/**
+	 * Given an entry Id, returns the associated metric from the database.
+	 * If one does not exist, null is returned.
+	 * 
+	 */
+	public static AcneMetric loadFromDb(DbHelper db, int id){
+		String where =  COL_ENTRY_ID +" = '"+ id+"'";
+		Cursor c = db.doQuery(TABLE_NAME, where, null);
+		
+		if(!c.moveToFirst()) {
+			return null;
+		}
+		
+		int numCol = c.getColumnIndex(COL_NUM_PIMPLES);
+		int num = c.getInt(numCol);
+		
+		return new AcneMetric(num);		
+	}
 
 	/****** Database Info *************/
 	public static final String TAG_NAME = "AcneMetric";
@@ -77,4 +100,5 @@ public class AcneMetric implements TrackingMetric {
 			+ COL_NUM_PIMPLES + " integer not null, " + COL_ENTRY_ID
 			+ " integer not null);";
 
+	
 }
