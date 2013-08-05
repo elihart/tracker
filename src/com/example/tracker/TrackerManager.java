@@ -17,16 +17,8 @@ public class TrackerManager {
 		mDbHelper = new DbHelper(context);
 	}
 
-	public void saveCurrentEntry() {
-		mDbHelper.addEntry(mCurrentEntry);		
-	}
-	
-	public LogEntry getCurrentEntry(){
-		return mCurrentEntry;
-	}
-
-	public void setCurrentEntry(LogEntry entry) {
-		mCurrentEntry = entry;		
+	public void saveEntry(LogEntry entry) {
+		mDbHelper.addEntry(entry);		
 	}
 
 	public Cursor getLogs() {

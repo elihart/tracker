@@ -16,50 +16,14 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:textSize="20sp"
-        android:text="Add a new log entry" />
-            
-    <EditText
-        android:id="@+id/numberOfPimples"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/notes"
-        android:layout_marginBottom="32dp"
-        android:layout_toLeftOf="@+id/title"
-        android:ems="10"
-        android:inputType="number" />
-
-    <TextView
-        android:id="@+id/numberLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/numberOfPimples"
-        android:text="Number of pimples" />
-
-    <TextView
-        android:id="@+id/notesLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/notes"
-        android:layout_alignLeft="@+id/numberOfPimples"
-        android:text="Notes" />
-
-    <EditText
-        android:id="@+id/notes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/numberLabel"
-        android:layout_centerVertical="true"
-        android:ems="10"
-        android:inputType="textMultiLine" >        
-    </EditText>
-
+        android:text="New Entry" />
+    
     <Button
         android:id="@+id/save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/title"
         android:onClick="save"
         android:text="Save" />
     
@@ -67,10 +31,41 @@
         android:id="@+id/cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="74dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/title"
         android:onClick="cancel"
-        android:text="Cancel" />    
+        android:text="Cancel" />     
+
+    <TextView
+        android:id="@+id/notesLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/cancel"
+        android:text="Notes" />
+
+    <EditText
+        android:id="@+id/notes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/notesLabel"
+        android:layout_alignParentLeft = "true"
+        android:layout_alignParentRight = "true"
+        android:ems="10"
+        android:inputType="textMultiLine" >        
+    </EditText>
+    
+    <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/notes">
+            <LinearLayout 
+                  android:id="@+id/metricList"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical">
+                  <!-- Insert Metric Data Here -->
+            </LinearLayout>
+      </ScrollView>        
 
 </RelativeLayout>

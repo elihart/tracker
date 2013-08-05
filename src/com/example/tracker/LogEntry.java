@@ -15,6 +15,12 @@ public class LogEntry {
 	
 	public LogEntry() {
 		
+		// Create the default metrics
+		mMetrics = new ArrayList<TrackingMetric>();
+		mMetrics.add(new AcneMetric());
+		
+		mImagePaths = new ArrayList<Uri>();
+		
 	}
 	
 	/*
@@ -35,9 +41,11 @@ public class LogEntry {
 		int noteCol = cursor.getColumnIndex("note");
 		this.mNote = cursor.getString(noteCol);
 		
-		// search metric tables for metrics for this id
+		// search metric tables for metrics for this entry id
+		mMetrics = new ArrayList<TrackingMetric>();
 		
-		// search image table 
+		// search image table for pictures for this entry id
+		mImagePaths = new ArrayList<Uri>();
 	}
 
 	public void addMetric(TrackingMetric metric){
@@ -58,6 +66,10 @@ public class LogEntry {
 
 	public void setNote(String note) {
 		this.mNote = note;
+	}
+
+	public ArrayList<TrackingMetric> getMetrics() {
+		return mMetrics;
 	}
 
 }

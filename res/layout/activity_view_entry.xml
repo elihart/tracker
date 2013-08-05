@@ -22,6 +22,18 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"/>
+    <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/note">
+            <LinearLayout 
+                  android:id="@+id/metricList"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical">
+                  <!-- Insert Metric Data Here -->
+            </LinearLayout>
+      </ScrollView>
 
     <Button
         android:id="@+id/back"

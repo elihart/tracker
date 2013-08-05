@@ -1,6 +1,9 @@
 package com.example.tracker.data;
 
+import java.util.ArrayList;
+
 import com.example.tracker.LogEntry;
+import com.example.tracker.TrackingMetric;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -19,14 +22,18 @@ public class DbHelper {
 	/*
 	 * Add the LogEntry to the database
 	 */
-	public void addEntry(LogEntry mCurrentEntry) {
+	public void addEntry(LogEntry entry) {
 		// create ContentValues for this entry
 		ContentValues values = new ContentValues();
 		values.put("date", System.currentTimeMillis());
-		values.put("note", mCurrentEntry.getNote());
-		mDb.insert(TrackerDatabase.TABLE_ENTRIES, null, values);
+		values.put("note", entry.getNote());
+		long entryId = mDb.insert(TrackerDatabase.TABLE_ENTRIES, null, values);
 		
 		// insert the metrics associated with this entry
+		ArrayList<TrackingMetric> metrics = entry.getMetrics();
+		for(TrackingMetric metric : metrics){
+			metric.insertInDb(mDb, entryId);			
+		}
 		
 		
 		// insert pictures associated with this entry
@@ -47,6 +54,5 @@ public class DbHelper {
 		Cursor c = mDb.query(TrackerDatabase.TABLE_ENTRIES, null, selection, null, null, null, "date DESC");
 		
 		return new LogEntry(c);
-	}
-
+	}	
 }
